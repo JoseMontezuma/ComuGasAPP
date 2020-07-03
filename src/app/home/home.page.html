@@ -1,0 +1,62 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button  menu="first">
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" >ComuGasApp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light" [fullscreen]="true">
+<ion-card mode="ios">
+  <ion-item color="warning">
+    <ion-label class="ion-text-center">Bienvenido a ComuGas</ion-label>
+  </ion-item>
+  <ion-card-content color="light">
+    Desde está aplicación podras controlar la venta del Servicio de Gas de tu comunidad y garantizar la entrega segura del mismo.
+  </ion-card-content>
+  <ion-img class="header" src="/assets/icon/header.svg"></ion-img>
+  <br>
+  <ion-item color="warning">
+  <ion-icon color="dark"name="arrow-down-circle-sharp" slot="end"></ion-icon>
+  <ion-label>Selecciona a donde quieres ir</ion-label>
+</ion-item>
+</ion-card>
+
+
+    <ion-card mode="ios">
+      <ion-item color="primary" routerLink="/consulta" class="ion-activated">
+        <ion-icon color="light" name="search" slot="start"></ion-icon>
+        <ion-card-content color="light">
+          Valide la entrega del servicio consultando al beneficiario y su registro de venta.
+        </ion-card-content>  
+      </ion-item>
+     
+      </ion-card>
+
+      <ion-card mode="ios">
+        <ion-item color="warning" routerLink="/venta" class="ion-activated">
+          <ion-icon color="light" name="cart-outline" slot="start"></ion-icon>
+          <ion-card-content color="light"> Registre las ventas de gas y cilindros en su comunidad. 
+          </ion-card-content>
+        </ion-item>
+        </ion-card>
+
+        <ion-card mode="ios">
+          <ion-item color="primary" routerLink="/comunidad" class="ion-activated">
+            <ion-icon color="light" name="people-outline" slot="start"></ion-icon>
+            <ion-card-content color="light">
+              Almacene el censo de beneficiarios de su comunidad, y consulte su información cuando desee. 
+            </ion-card-content>
+          </ion-item>
+          </ion-card>
+
+          <ion-card mode="ios">
+            <ion-item color="warning" routerLink="/reporte" class="ion-activated">
+              <ion-icon color="light" name="document-outline" slot="start"></ion-icon>
+              <ion-card-content color="light"> Visualice las ventas realizadas en su comunidad y comparta los resultados como un documento PDF.
+              </ion-card-content>
+            </ion-item>
+            </ion-card>           
+</ion-content>

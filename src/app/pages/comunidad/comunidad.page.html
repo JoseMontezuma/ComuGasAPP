@@ -1,0 +1,90 @@
+<ion-header  class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button  menu="first">
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" >Comunidad </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  [fullscreen]="true" color="light">
+ <ion-text class="ion-text-center" color="primary">
+    <h3>Beneficiarios Registrados</h3>
+  </ion-text>
+  <ion-card mode="md">
+    <ion-item color="light">
+      <p class="ion-text-left" color="primary" > Registre y consulte a los beneficiarios de su comunidad</p>
+      <ion-img class="comunidad" src="/assets/icon/comunidad.svg"> </ion-img>
+    </ion-item>
+  </ion-card>
+  <ion-searchbar (ionChange)="buscar( $event )" inputmode="search" mode="ios"  placeholder="Nombre del Beneficiario"></ion-searchbar>
+
+  <ion-list lines="none" color="light" mode="ios" #lista>
+    <ion-item-sliding #slidingItem (click)="slidingItem.close()" *ngFor="let beneficiario of ( beneficiarios | async) | filtro: textoBuscar: 'nombreBen' "  >
+      <ion-item lines="none" color="ligth">
+        <ion-label>
+          <h2 >
+            {{ beneficiario.nombreBen}} {{ beneficiario.apellidoBen}}
+          </h2>
+          <p>
+         <ion-icon color= "primary" slot="start" name="checkmark-circle-outline"></ion-icon>
+         C.I.{{ beneficiario.cedulaBen}}
+          </p>
+          <p>
+          <ion-icon color="primary" name="call-outline"></ion-icon>
+            {{ beneficiario.telefonoBen}}
+           </p>
+        </ion-label>
+        <ion-badge color="primary" slot="end"> 
+          {{beneficiario.cpBen}}
+          <ion-note color="light">P</ion-note>
+        </ion-badge>  
+
+        <ion-badge color="medium" slot="end"> 
+          {{beneficiario.cmBen}}
+          <ion-note color="light">M</ion-note>
+        </ion-badge> 
+
+        <ion-badge color="dark" slot="end"> 
+          {{beneficiario.cgBen}}
+          <ion-note color="light">G</ion-note>
+        </ion-badge> 
+
+      </ion-item>
+          
+          <ion-item-options>
+            <ion-item-option  button [routerLink]= "['/ben/'+beneficiario.id]" 
+            color="warning">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  
+  <!-- SKELETON TEXT -->
+  <ion-list *ngIf="(beneficiarios | async) === null ">
+    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1,1]"
+     class="animated flash slow infinite">
+      <ion-label>
+        <h3 slot="start"><ion-skeleton-text width="10%"></ion-skeleton-text></h3>
+        <p slot="start">
+          <ion-skeleton-text width="10%"></ion-skeleton-text>
+        </p>
+        <p slot="start">
+          <ion-skeleton-text width="10%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+      <ion-label slot="end" class="ion-text-right">
+       <ion-skeleton-text width="5%"></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]= "['/beneficiario']" routerDirection="forward">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

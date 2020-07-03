@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "comugas-e268c": {
+      "hosting": {
+        "app": [
+          "comugas-e268c"
+        ]
+      }
+    }
+  }
+}

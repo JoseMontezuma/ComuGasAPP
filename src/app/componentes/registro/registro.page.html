@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center" >Nueva Cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  [fullscreen]="true">
+  <br>
+  <img class= icono1 src="assets/icon/registro.svg" alt="">
+  <br>
+  <ion-text color="primary">
+    <h4 class="ion-text-center">Ingrese sus Datos</h4> 
+  </ion-text>
+
+   <br>
+
+    <form   #formulario="ngForm" (ngSubmit)= "OnSubmitRegister()">
+      <ion-list>
+        <ion-item >
+          <ion-label position="floating">Nombre y Apellido:</ion-label>
+          <ion-input required type="text" [(ngModel)]="name" name="name"> </ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label position="floating">Correo Eléctronico:</ion-label>
+          <ion-input required pattern='[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'  type="email" [(ngModel)]="email" name="email"> </ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label position="floating" >Contraseña:</ion-label>
+          <ion-input required  type="password" [(ngModel)]="password" name="password"> </ion-input>   
+        </ion-item>
+      </ion-list>
+</form>
+  <br>
+  <div class="ion-padding">
+    <ion-button class="ion-no-margin" [disabled]="formulario.invalid" type="submit" expand="block" color="primary" (click)="OnSubmitRegister()">Crear Cuenta</ion-button>
+  </div>
+  <ion-text color="primary">
+    <p  class="ion-text-center" routerLink="/login">Ya tengo una Cuenta</p> 
+  </ion-text>
+</ion-content>
+
