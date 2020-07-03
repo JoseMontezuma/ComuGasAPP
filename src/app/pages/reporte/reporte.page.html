@@ -1,0 +1,164 @@
+<ion-header  class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center" >Visualizar Ventas </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button  menu="first">
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+      <ion-toolbar>
+      <ion-segment (ionChange)="segmentChanged($event)" values="Gas"  scrollable="true"   [(ngModel)]="segmentModel">
+        <ion-segment-button value="Gas">
+          <ion-icon name="flame"></ion-icon>
+        </ion-segment-button>
+
+        <ion-segment-button value="Cilindro">
+          <ion-icon name="cart"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content  [fullscreen]="true" color="light">
+ <ion-text  *ngIf="segmentModel === 'Gas'" class="ion-text-center" color="primary">
+    <h3>Ventas de Gas Registradas</h3>
+  </ion-text>
+  
+  <ion-text  *ngIf="segmentModel === 'Cilindro'" class="ion-text-center" color="primary">
+    <h3>Ventas de Cilindros Registradas</h3>
+  </ion-text>
+
+  <ion-card mode="md">
+    <ion-item lines="none" color="light">
+      <p class="ion-text-left" color="primary" >Observe la cantidad de ventas realizadas de Gas y Cilindros.</p>
+      <ion-img class="reporte" src="/assets/icon/ojo.svg"> </ion-img>
+    </ion-item>
+  </ion-card>
+
+    <ion-list *ngIf="segmentModel === 'Gas'" color="light" mode="ios" >
+      <ion-item-sliding #slidingItem (click)="slidingItem.close()" *ngFor="let ventaGas of ventasGas | async"  >
+        <ion-item lines="inset"  color="ligth">
+          <ion-label>
+            <h2 >
+              {{ ventaGas.nombreGas}} {{ ventaGas.apellidoGas}}
+            </h2>
+            <p>
+           <ion-icon color= "primary" slot="start" name="checkmark-circle-outline"></ion-icon>
+           C.I.{{ ventaGas.cedulaGas}}
+            </p>
+            <p>
+              <ion-icon color="primary" name="calendar-outline"></ion-icon>
+                {{ ventaGas.fechaGas | date:'dd-MM-yyyy' }}
+               </p>
+          </ion-label>
+
+          <ion-note color="dark" slot="end"> 
+            {{ventaGas.tamanoGas}}
+            <ion-note color="light"></ion-note>
+          </ion-note> 
+
+          <ion-badge color="primary" slot="end"> 
+            {{ventaGas.cantidadGas}}
+            <ion-note color="light"></ion-note>
+          </ion-badge> 
+        </ion-item>
+            
+            <ion-item-options>
+              <ion-item-option   [routerLink]= "['/gas/'+ventaGas.id]" color="warning" >
+                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+        <ion-fab *ngIf="segmentModel === 'Gas'" vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button [routerLink]= "['/venta']" routerDirection="forward">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
+
+        <ion-list *ngIf="segmentModel === 'Cilindro'" color="light" mode="ios" >
+          <ion-item-sliding #slidingItem (click)="slidingItem.close()" *ngFor="let ventaCilindro of ventasCilindro | async"  >
+            <ion-item lines="inset"  color="ligth">
+              <ion-label>
+                <h2 >
+                  {{ ventaCilindro.nombreCilindro}} {{ ventaCilindro.apellidoCilindro}}
+                </h2>
+                <p>
+               <ion-icon color= "primary" slot="start" name="checkmark-circle-outline"></ion-icon>
+               C.I.{{ ventaCilindro.cedulaCilindro}}
+                </p>
+                <p>
+                  <ion-icon color="primary" name="calendar-outline"></ion-icon>
+                    {{ ventaCilindro.fechaCilindro | date:'dd-MM-yyyy' }}
+                   </p>
+              </ion-label>
+    
+              <ion-note color="dark" slot="end"> 
+                {{ventaCilindro.tamanoCilindro}}
+                <ion-note color="light"></ion-note>
+              </ion-note> 
+    
+              <ion-badge color="primary" slot="end"> 
+                {{ventaCilindro.cantidadCilindro}}
+                <ion-note color="light"></ion-note>
+              </ion-badge> 
+            </ion-item>
+                
+                <ion-item-options>
+                  <ion-item-option   [routerLink]= "['/cilindro/'+ventaCilindro.id]" color="warning" >
+                    <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                  </ion-item-option>
+                </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+        <ion-fab *ngIf="segmentModel === 'Cilindro'" vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button [routerLink]= "['/cilindro']" routerDirection="forward">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
+
+         <!-- SKELETON TEXT -->
+  <ion-list *ngIf="(ventasGas | async) === null ">
+    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1,1]"
+     class="animated flash slow infinite">
+      <ion-label>
+        <h3 slot="start"><ion-skeleton-text width="10%"></ion-skeleton-text></h3>
+        <p slot="start">
+          <ion-skeleton-text width="10%"></ion-skeleton-text>
+        </p>
+        <p slot="start">
+          <ion-skeleton-text width="10%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+      <ion-label slot="end" class="ion-text-right">
+       <ion-skeleton-text width="5%"></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+
+
+   <!-- SKELETON TEXT -->
+   <ion-list *ngIf="(ventasCilindro | async) === null ">
+    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1,1]"
+     class="animated flash slow infinite">
+      <ion-label>
+        <h3 slot="start"><ion-skeleton-text width="10%"></ion-skeleton-text></h3>
+        <p slot="start">
+          <ion-skeleton-text width="10%"></ion-skeleton-text>
+        </p>
+        <p slot="start">
+          <ion-skeleton-text width="10%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+      <ion-label slot="end" class="ion-text-right">
+       <ion-skeleton-text width="5%"></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

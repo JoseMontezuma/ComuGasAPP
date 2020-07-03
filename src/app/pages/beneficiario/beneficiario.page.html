@@ -1,0 +1,110 @@
+<ion-header  class="ion-no-border">
+  <ion-toolbar color="primary">
+      <ion-buttons color="primary" slot="start">
+        <ion-back-button defaultHref="/comunidad" mode="md" color="light"></ion-back-button>
+      </ion-buttons>
+    <ion-title class="ion-text-center" >Nuevo Beneficiario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-content  [fullscreen]="true" color="light">
+    <ion-card lines="none" mode="md">
+      <ion-item color="light">
+        <p  color="primary" class="ion-text-start"  >Registre un nuevo Beneficiario de su Comunidad</p>
+        <ion-img class= "beneficiario" src="/assets/icon/beneficiario.svg"></ion-img>
+      </ion-item>
+    </ion-card>
+    <ion-list lines="none" mode="md">
+     
+      <ion-item lines="none" *ngIf="beneficiario" color="light">
+        <ion-icon color= "primary" slot="start" name="finger-print-outline"></ion-icon>
+        <ion-label position="floating" > Cedula de Identidad:</ion-label>
+        <ion-input required type="text"  placeholder="C.I" [(ngModel)]= "beneficiario.cedulaBen"></ion-input>
+      </ion-item>
+    
+      <ion-item  lines="none" *ngIf="beneficiario"  color="light">
+        <ion-icon color= "primary" slot="start" name="text-outline"></ion-icon>
+        <ion-label position="floating">Nombre:</ion-label>
+        <ion-input  required type="text" placeholder="Primer Nombre" [(ngModel)]="beneficiario.nombreBen"></ion-input>
+      </ion-item>
+      
+      <ion-item lines="none" *ngIf="beneficiario"  color="light">
+        <ion-icon color= "primary" slot="start" name="text-outline"></ion-icon>
+        <ion-label position="floating">Apellido:</ion-label>
+        <ion-input  required type="text" placeholder="Primer Apellido" [(ngModel)]="beneficiario.apellidoBen" ></ion-input>
+      </ion-item>
+     
+      <ion-item lines="none" *ngIf="beneficiario"  color="light">
+        <ion-icon color= "primary" slot="start" name="call-outline"></ion-icon>
+        <ion-label position="floating">Telefono:</ion-label>
+        <ion-input  required type="text" placeholder="Número de Telefono" [(ngModel)]="beneficiario.telefonoBen" ></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" *ngIf="beneficiario"  color="light">
+        <ion-icon color= "primary" slot="start" name="locate-outline"></ion-icon>
+        <ion-label position="stacked">Calle:</ion-label>
+        <ion-select type="text" required [(ngModel)]="beneficiario.calleBen">
+          <ion-select-option value="Principal">Principal</ion-select-option>
+          <ion-select-option value="Polvenir">Polvenir</ion-select-option>
+          <ion-select-option value="José Gregorio Hernandez" >José Gregorio Hernandez</ion-select-option>
+          <ion-select-option value="Juan José Rodriguez" >Juan José Rodriguez</ion-select-option>
+        </ion-select>
+      </ion-item>
+    
+      <ion-item lines="none" *ngIf="beneficiario"  color="light">
+        <ion-icon color= "primary" slot="start" name="flame-outline"></ion-icon>
+        <ion-label>Cilindros Pequeños: </ion-label>
+        <ion-select required type="text" [(ngModel)]="beneficiario.cpBen">
+          <ion-select-option value="0">0</ion-select-option>
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+          <ion-select-option value="5">5</ion-select-option>
+          <ion-select-option value="6">6</ion-select-option>
+          <ion-select-option value="7">7</ion-select-option>
+          <ion-select-option value="8">8</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-item lines="none" *ngIf="beneficiario"  color="light">
+        <ion-icon color= "primary" slot="start" name="flame-outline"></ion-icon>
+        <ion-label>Cilindros Medianos: </ion-label>
+        <ion-select type="text" required [(ngModel)]="beneficiario.cmBen">
+          <ion-select-option value="0">0</ion-select-option>
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+          <ion-select-option value="5">5</ion-select-option>
+          <ion-select-option value="6">6</ion-select-option>
+          <ion-select-option value="7">7</ion-select-option>
+          <ion-select-option value="8">8</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+  <ion-item  lines="none" *ngIf="beneficiario"  color="light">
+        <ion-icon color= "primary" slot="start" name="flame-outline"></ion-icon>
+        <ion-label>Cilindros Grandes: </ion-label>
+        <ion-select type="text" required [(ngModel)]="beneficiario.cgBen" >
+          <ion-select-option value= "0">0</ion-select-option>
+          <ion-select-option value= "1">1</ion-select-option>
+          <ion-select-option value= "2">2</ion-select-option>
+          <ion-select-option value= "3">3</ion-select-option>
+          <ion-select-option value= "4">4</ion-select-option>
+          <ion-select-option value= "5">5</ion-select-option>
+          <ion-select-option value= "6">6</ion-select-option>
+          <ion-select-option value= "7">7</ion-select-option>
+          <ion-select-option value= "8">8</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    
+    <div class="ion-padding">
+      <ion-button expand="block" (click)="addBeneficiario()"  class="ion-no-margin">Guardar Beneficiario
+       </ion-button>
+    </div>
+  </ion-content>
+  
+</ion-content>

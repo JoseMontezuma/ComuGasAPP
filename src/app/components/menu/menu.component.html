@@ -1,0 +1,77 @@
+<ion-menu side="start" menuId="first" contentId="main" >
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title class="ion-text-center">Menu Principal</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content color="light">
+    <ion-list>
+     <ion-menu-toggle>
+      <ion-item href="home">
+        <ion-icon color="primary" name="home" slot="start"></ion-icon>
+        <ion-label>
+          Inicio
+        </ion-label>
+      </ion-item>
+     
+      <ion-item href="consulta">
+        <ion-icon color="primary" name="search" slot="start"></ion-icon>
+        <ion-label>
+          Consultar Beneficiario
+        </ion-label>
+      </ion-item>
+     
+      <ion-item href="venta">
+        <ion-icon color="primary" name="flame" slot="start"></ion-icon>
+        <ion-label>
+          Registrar Venta Gas
+        </ion-label>
+      </ion-item>
+
+      <ion-item href="cilindro">
+        <ion-icon color="primary" name="cart" slot="start"></ion-icon>
+        <ion-label>
+          Registrar Venta Cilindro
+        </ion-label>
+      </ion-item>
+     
+      <ion-item href="comunidad">
+        <ion-icon color="primary" name="people" slot="start"></ion-icon>
+        <ion-label>
+          Comunidad
+        </ion-label>
+      </ion-item>
+    
+      <ion-item href="reporte">
+        <ion-icon color="primary" name="eye" slot="start"></ion-icon>
+        <ion-label>
+          Visualizar Ventas
+        </ion-label>
+      </ion-item> 
+
+      <ion-item href="pdf-gas">
+        <ion-icon color="primary" name="print" slot="start"></ion-icon>
+        <ion-label>
+          PDF Ventas de Gas
+        </ion-label>
+      </ion-item> 
+     
+      <ion-item href="pdf">
+        <ion-icon color="primary" name="print" slot="start"></ion-icon>
+        <ion-label>
+          PDF Ventas de Cilindros
+        </ion-label>
+      </ion-item> 
+
+
+
+      <ion-item (click)="OnLogout()">
+        <ion-icon color="danger" name="log-out" slot="start"></ion-icon>
+        <ion-label>
+          Salir
+        </ion-label>
+      </ion-item> 
+    </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>

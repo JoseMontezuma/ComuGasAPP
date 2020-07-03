@@ -1,0 +1,8 @@
+{
+  "name": "ComuGasApp",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

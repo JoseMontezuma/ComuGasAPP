@@ -1,0 +1,102 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center" >PDF Gas</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button  menu="first">
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" color="light">
+  <!-- <ion-item lines="none" color="light">
+    <ion-icon color= "primary" slot="start" name="calendar-outline"></ion-icon>
+    <ion-label  >Fecha Inicial</ion-label>
+    <ion-datetime value="" doneText="Aceptar" cancelText="Cancelar" placeholder="Ingrese una fecha" displayFormat="DD/MM/YYYY" (ionChange)="loadResults()" [(ngModel)]="startDate" min="1994-03-14" ></ion-datetime>
+  </ion-item>
+
+  <ion-item lines="none" color="light">
+    <ion-icon color= "primary" slot="start" name="calendar-outline"></ion-icon>
+    <ion-label >Fecha Final</ion-label>
+    <ion-datetime  value="" placeholder="Ingrese una fecha" displayFormat="DD/MM/YYYY" (ionChange)="loadResults()" [(ngModel)]="endDate"  min="1994-03-14" ></ion-datetime>
+  </ion-item>  --> 
+  <ion-card mode="md">
+    <ion-item color="light">
+      <p class="ion-text-left" color="primary" >Cargue los registro de sus ventas y Genere un Documento PDF para exportar.</p>
+      <ion-img class="comunidad" src="/assets/icon/pdf.svg"> </ion-img>
+    </ion-item>
+  </ion-card>
+  <ion-text  class="ion-text-center" color="primary">
+    <h3>Consultar Ventas</h3>
+  </ion-text>
+ 
+  <ion-card (click)="loadResultsLimit()" mode="ios">
+    <ion-item color="primary"  class="ion-activated">
+      <ion-icon color="light" name="filter" slot="start"></ion-icon>
+      <ion-card-content color="light">
+       Si desea cargar los ultimos (60) Registros para generar su documento PDF,Presiona aqui.
+      </ion-card-content>  
+    </ion-item>
+  </ion-card>
+ 
+  <ion-card (click)="loadResults()" mode="ios">
+    <ion-item color="primary"  class="ion-activated">
+      <ion-icon color="light" name="server" slot="start"></ion-icon>
+      <ion-card-content color="light">
+       Si desea cargar el total de Registros para generar su documento PDF,Presiona aqui.
+      </ion-card-content>  
+    </ion-item>
+  </ion-card>
+
+  <ion-row>
+    <ion-col  (click)="loadResultsLimitPequenos()">
+      <ion-card (click)="loadResultsLimitPequenos()" color="primary">
+        <ion-card-content class="ion-text-center">Ultimos Pequeños</ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col (click)="loadResultsLimitMedianos()">
+      <ion-card color="medium">
+        <ion-card-content class="ion-text-center">Ultimos Medianos</ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col (click)="loadResultsLimitGrandes()">
+     <ion-card color="dark">
+      <ion-card-content class="ion-text-center">Ultimos Grandes</ion-card-content>
+     </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <div class="ion-padding">
+     <ion-button (click)="generarPDF()" color="danger"  expand="block" class="ion-no-margin">Generar Documento PDF 
+    </ion-button>
+  </div>
+
+  <ion-list color="ligth" mode="ios" *ngFor="let ventasGas of ventasGas  | async">
+        <ion-item lines="none"  color="ligth">
+          <ion-label  class="ion-text-wrap">
+            <h2 >
+              {{ ventasGas.nombreGas}} {{ventasGas.apellidoGas}}
+            </h2>
+            <p>
+           <ion-icon color= "primary" slot="start" name="checkmark-circle-outline"></ion-icon>
+            C.I.{{ ventasGas.cedulaGas}}
+            </p>
+            <p>
+              <ion-icon color="primary" name="calendar-outline"></ion-icon>
+                {{ ventasGas.fechaGas.toDate() | date: 'dd/MM/yyyy' }}
+               </p>
+          </ion-label>
+
+          <ion-note color="dark" slot="end"> 
+            {{ventasGas.tamanoGas}}
+            <ion-note color="light"></ion-note>
+          </ion-note> 
+
+          <ion-badge color="primary" slot="end"> 
+            {{ventasGas.cantidadGas}}
+            <ion-note color="light"></ion-note>
+          </ion-badge> 
+        </ion-item>
+      </ion-list>
+</ion-content>

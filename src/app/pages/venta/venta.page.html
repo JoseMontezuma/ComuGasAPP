@@ -1,0 +1,80 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/reporte" mode="md" color="light" ></ion-back-button>
+   
+    </ion-buttons>
+    <ion-title class="ion-text-center" >Registrar Ventas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  [fullscreen]="true" color="light">
+  <ion-card lines="none" mode="md">
+    <ion-item color="light">
+      <p  color="primary" class="ion-text-start"  >Registre una nueva Venta de Gas</p>
+      <ion-img class= "venta" src="/assets/icon/venta.svg"></ion-img>
+    </ion-item>
+  </ion-card>
+
+
+  <ion-list lines="none" mode="md"  >
+    <ion-item lines= "none" *ngIf="ventagas"  color="light">
+    <ion-icon color= "primary" slot="start" name="finger-print-outline"></ion-icon>
+    <ion-label  position="floating" > Cedula de Identidad:</ion-label>
+    <ion-input  required type="text"  value="" [(ngModel)]= "ventagas.cedulaGas"> </ion-input>
+  </ion-item>
+
+
+  <ion-item lines="none" *ngIf="ventagas" color="light">
+    <ion-icon color= "primary" slot="start" name="text-outline"></ion-icon>
+    <ion-label  position="floating">Nombre:</ion-label>
+    <ion-input required type="text" [(ngModel)]= "ventagas.nombreGas"> </ion-input>
+  </ion-item>
+  
+  <ion-item  lines="none" *ngIf="ventagas" color="light">
+    <ion-icon color= "primary" slot="start" name="text-outline"></ion-icon>
+    <ion-label  position="floating" >Apellido:</ion-label>
+    <ion-input  required type="text" [(ngModel)]= "ventagas.apellidoGas"></ion-input>
+  </ion-item>
+ 
+
+  
+  <ion-item lines="none" *ngIf="ventagas" color="light">
+    <ion-icon color= "primary" slot="start" name="cart-outline"></ion-icon>
+    <ion-label >Tamaño de Cilindros: </ion-label>
+    <ion-select type="text" required interface="popover" [(ngModel)]= "ventagas.tamanoGas">
+      <ion-select-option value="Pequeños" >Pequeños</ion-select-option>
+      <ion-select-option value="Medianos" >Medianos</ion-select-option>
+      <ion-select-option value="Grandes" >Grandes</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="none" *ngIf="ventagas" color="light">
+    <ion-icon color= "primary" slot="start" name="cart-outline"></ion-icon>
+    <ion-label>Cantidad de Cilindros a Llenar: </ion-label>
+    <ion-select type="text" required [(ngModel)]= "ventagas.cantidadGas" >
+      <ion-select-option value="1">1</ion-select-option>
+      <ion-select-option value="2">2</ion-select-option>
+      <ion-select-option value="3">3</ion-select-option>
+      <ion-select-option value="4">4</ion-select-option>
+      <ion-select-option value="5">5</ion-select-option>
+      <ion-select-option value="6">6</ion-select-option>
+      <ion-select-option value="7">7</ion-select-option>
+      <ion-select-option value="8">8</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item lines="none" color="light">
+  <ion-icon color= "primary" slot="start" name="qr-code-outline"></ion-icon>
+  <ion-label  position="floating" >Codigo de Venta</ion-label>
+  <ion-input required type="text" [(ngModel)]="encodeData" ></ion-input>   
+</ion-item>
+</ion-list>
+
+<div class="ion-padding">
+  <ion-button expand="block" type="submit" class="ion-no-margin" (click)="encodeText()">Generar QR de Venta</ion-button>
+  <br>
+  <ion-button (click)="addVentaGas()" expand="block" type="submit" class="ion-no-margin"> Guardar Venta de Gas
+  </ion-button>
+</div>
+
+</ion-content>
